@@ -1,6 +1,26 @@
 import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import Axios from 'axios';
+const url = 'https://api-for-missions-and-railways.herokuapp.com/signin';
 
 const Login = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: (values) => {
+      console.log(JSON.stringify(values, null, 2));
+
+      Axios.post(url, {
+        email: formik.values.email,
+        password: formik.values.password,
+      }).then((res) => {
+        console.log(res.data);
+      });
+    },
+  });
+
   return (
     <>
       <h1>ログインページ</h1>
@@ -9,6 +29,28 @@ const Login = () => {
       </div>
       <div>
         <Link to={`/`}>ホームに戻る</Link>
+      </div>
+      <div>
+        <form onSubmit={formik.handleSubmit}>
+          <label htmlFor="email">Email Address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+          />
+          <label htmlFor="password">password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+          />
+
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </>
   );
