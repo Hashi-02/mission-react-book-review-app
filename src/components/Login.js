@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import Axios from 'axios';
+import React from 'react';
 const url = 'https://api-for-missions-and-railways.herokuapp.com/signin';
 
 const Login = () => {
+  const [error, setError] = React.useState(null);
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -15,11 +17,25 @@ const Login = () => {
       Axios.post(url, {
         email: formik.values.email,
         password: formik.values.password,
-      }).then((res) => {
-        console.log(res.data);
-      });
+      })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => {
+          setError(error);
+        });
     },
   });
+
+  if (error)
+    return (
+      <div>
+        {`Error: ${error.message}`}
+        <div>
+          <Link to={`/`}>ホームに戻る</Link>
+        </div>
+      </div>
+    );
 
   return (
     <>
