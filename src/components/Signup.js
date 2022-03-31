@@ -59,7 +59,7 @@ const Signup = () => {
       </div>
       <div>{error && <p>{error.message}</p>}</div>
       <div>
-        <Link to={`/`}>ホームに戻る</Link>
+        <Link to={`/home`}>ホームに戻る</Link>
       </div>
 
       <form onSubmit={formik.handleSubmit}>

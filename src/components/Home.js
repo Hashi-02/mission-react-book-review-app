@@ -12,6 +12,9 @@ const Home = () => {
       <div>
         ログインは<Link to={`/login/`}>こちら</Link>
       </div>
+      <div>
+        レビュー一覧は<Link to={`/review`}>こちら</Link>
+      </div>
     </>
   );
 };
