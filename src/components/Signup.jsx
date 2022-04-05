@@ -1,10 +1,11 @@
 import { useFormik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import React from 'react';
 import * as Yup from 'yup';
 
 const Signup = () => {
+  const navigate = useNavigate();
   const url = 'https://api-for-missions-and-railways.herokuapp.com/users';
   const [error, setError] = React.useState(null);
 
@@ -34,22 +35,13 @@ const Signup = () => {
       })
         .then((res) => {
           console.log(res.data);
+          navigate('/review');
         })
         .catch((error) => {
           setError(error);
         });
     },
   });
-
-  // if (error)
-  //   return (
-  //     <div>
-  //       {`Error: ${error.message}`}
-  //       <div>
-  //         <Link to={`/`}>ホームに戻る</Link>
-  //       </div>
-  //     </div>
-  //   );
 
   return (
     <div>
@@ -104,7 +96,6 @@ const Signup = () => {
 
         <button type="submit">Submit</button>
       </form>
-      <div></div>
     </div>
   );
 };
