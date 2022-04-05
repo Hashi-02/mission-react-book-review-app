@@ -27,7 +27,7 @@ const Review = () => {
         console.log(res.data);
         navigate('/login');
       });
-  }, []);
+  }, [TOKEN, navigate]);
   // const listInfo = info.map((i) => <div key={i}>{info[i]}</div>);
   // {a:2}
 

@@ -25,7 +25,7 @@ const GetUserAPI = () => {
         console.log(res.data);
         navigate('/login');
       });
-  }, []);
+  }, [TOKEN, navigate]);
 
   if (TOKEN) {
     return <h1>username:{name.name}</h1>;

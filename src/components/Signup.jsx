@@ -35,6 +35,7 @@ const Signup = () => {
       })
         .then((res) => {
           console.log(res.data);
+          localStorage.setItem('token', res.data.token);
           navigate('/review');
         })
         .catch((error) => {
