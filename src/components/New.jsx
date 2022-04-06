@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 const Signup = () => {
   const navigate = useNavigate();
-  const url = 'https://api-for-missions-and-railways.herokuapp.com/users';
+  const url = 'https://api-for-missions-and-railways.herokuapp.com/books';
   const [error, setError] = React.useState(null);
 
   const TOKEN = localStorage.getItem('token');
@@ -21,7 +21,7 @@ const Signup = () => {
         },
       })
       .then((res) => {
-        navigate('/review');
+        // navigate('/review');
       })
       .catch((res) => {
         console.log(res.data);
@@ -30,32 +30,35 @@ const Signup = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      password: '',
+      title: '',
+      url: '',
+      detail: '',
+      review: '',
     },
     validationSchema: Yup.object({
-      name: Yup.string()
+      title: Yup.string()
         .matches(/^[A-Za-z ]*$/, 'Please enter valid name')
         .max(40)
         .required('Required'),
-      email: Yup.string().email('Invalid email address').required('Required'),
-      password: Yup.string()
+      url: Yup.string().required('Required'),
+      detail: Yup.string()
+        .max(20, 'Must be 20 characters or less')
+        .required('Required'),
+      review: Yup.string()
         .max(20, 'Must be 20 characters or less')
         .required('Required'),
     }),
     onSubmit: (values) => {
       console.log(JSON.stringify(values, null, 2));
-
+      var article = JSON.stringify(values, null, 2);
       axios
-        .post(url, {
-          name: formik.values.name,
-          email: formik.values.email,
-          password: formik.values.password,
+        .post(url, article, {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
         })
         .then((res) => {
           console.log(res.data);
-          localStorage.setItem('token', res.data.token);
           navigate('/review');
         })
         .catch((error) => {
@@ -76,43 +79,55 @@ const Signup = () => {
       </div>
 
       <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="name">name</label>
+        <label htmlFor="title">title</label>
         <input
-          id="name"
-          name="name"
-          type="name"
+          id="title"
+          name="title"
+          type="title"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.name}
+          value={formik.values.title}
         />
-        {formik.touched.name && formik.errors.name ? (
-          <div>{formik.errors.name}</div>
+        {formik.touched.title && formik.errors.title ? (
+          <div>{formik.errors.title}</div>
         ) : null}
 
-        <label htmlFor="email">Email Address</label>
+        <label htmlFor="url">url</label>
         <input
-          id="email"
-          name="email"
-          type="email"
+          id="url"
+          name="url"
+          type="url"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.email}
+          value={formik.values.url}
         />
-        {formik.touched.email && formik.errors.email ? (
-          <div>{formik.errors.email}</div>
+        {formik.touched.url && formik.errors.url ? (
+          <div>{formik.errors.url}</div>
         ) : null}
 
-        <label htmlFor="password">password</label>
+        <label htmlFor="detail">detail</label>
         <input
-          id="password"
-          name="password"
-          type="password"
+          id="detail"
+          name="detail"
+          type="detail"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.password}
+          value={formik.values.detail}
         />
-        {formik.touched.password && formik.errors.password ? (
-          <div>{formik.errors.password}</div>
+        {formik.touched.detail && formik.errors.detail ? (
+          <div>{formik.errors.detail}</div>
+        ) : null}
+        <label htmlFor="review">review</label>
+        <input
+          id="review"
+          name="review"
+          type="review"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.review}
+        />
+        {formik.touched.review && formik.errors.review ? (
+          <div>{formik.errors.review}</div>
         ) : null}
 
         <button type="submit">Submit</button>

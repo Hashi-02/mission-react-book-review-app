@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import Axios from 'axios';
+import axios from 'axios';
 import React from 'react';
 import * as Yup from 'yup';
 const url = 'https://api-for-missions-and-railways.herokuapp.com/signin';
@@ -8,6 +8,25 @@ const url = 'https://api-for-missions-and-railways.herokuapp.com/signin';
 const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = React.useState(null);
+  const TOKEN = localStorage.getItem('token');
+  const url1 =
+    'https://api-for-missions-and-railways.herokuapp.com/books?offset=10';
+
+  React.useEffect(() => {
+    axios
+      .get(url1, {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      })
+      .then((res) => {
+        navigate('/review');
+      })
+      .catch((res) => {
+        console.log(res.data);
+      });
+  }, [TOKEN, navigate]);
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -21,10 +40,11 @@ const Login = () => {
     }),
     onSubmit: (values) => {
       console.log(JSON.stringify(values, null, 2));
-      Axios.post(url, {
-        email: formik.values.email,
-        password: formik.values.password,
-      })
+      axios
+        .post(url, {
+          email: formik.values.email,
+          password: formik.values.password,
+        })
         .then((res) => {
           console.log(res.data);
           localStorage.setItem('token', res.data.token);

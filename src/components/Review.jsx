@@ -2,14 +2,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import React from 'react';
 import GetUserAPI from './GetUserAPI';
+import Logout from './Logout';
 
 const Review = () => {
-  const navigate = useNavigate();
   const [info, setInfo] = React.useState([]);
-
+  const navigate = useNavigate();
   const TOKEN = localStorage.getItem('token');
-  const url =
-    'https://api-for-missions-and-railways.herokuapp.com/books?offset=10';
+  const url = 'https://api-for-missions-and-railways.herokuapp.com/books?';
 
   React.useEffect(() => {
     axios
@@ -34,6 +33,13 @@ const Review = () => {
   return (
     <>
       <GetUserAPI />
+      <Logout />
+      <div>
+        レビュー投稿は<Link to={`/new`}>こちら</Link>
+      </div>
+      <div>
+        プロフィールは<Link to={`/profile`}>こちら</Link>
+      </div>
       <h1>レビュー一覧</h1>
       <div>
         新規登録は<Link to={`/signup/`}>こちら</Link>
