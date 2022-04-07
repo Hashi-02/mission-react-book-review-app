@@ -1,33 +1,14 @@
 import { useFormik } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import React from 'react';
 import * as Yup from 'yup';
 
-const Signup = () => {
+const New = () => {
   const navigate = useNavigate();
   const url = 'https://api-for-missions-and-railways.herokuapp.com/books';
   const [error, setError] = React.useState(null);
-
   const TOKEN = localStorage.getItem('token');
-  const url1 =
-    'https://api-for-missions-and-railways.herokuapp.com/books?offset=10';
-
-  React.useEffect(() => {
-    axios
-      .get(url1, {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      })
-      .then((res) => {
-        // navigate('/review');
-      })
-      .catch((res) => {
-        console.log(res.data);
-      });
-  }, [TOKEN, navigate]);
-
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -36,10 +17,7 @@ const Signup = () => {
       review: '',
     },
     validationSchema: Yup.object({
-      title: Yup.string()
-        .matches(/^[A-Za-z ]*$/, 'Please enter valid name')
-        .max(40)
-        .required('Required'),
+      title: Yup.string().max(40).required('Required'),
       url: Yup.string().required('Required'),
       detail: Yup.string()
         .max(20, 'Must be 20 characters or less')
@@ -69,15 +47,7 @@ const Signup = () => {
 
   return (
     <div>
-      <h1>新規登録ページ</h1>
-      <div>
-        ログインは<Link to={`/login/`}>こちら</Link>
-      </div>
       <div>{error && <p>{error.message}</p>}</div>
-      <div>
-        <Link to={`/home`}>ホームに戻る</Link>
-      </div>
-
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="title">title</label>
         <input
@@ -136,4 +106,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default New;

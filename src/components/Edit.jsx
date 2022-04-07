@@ -11,7 +11,7 @@ const Edit = () => {
   const url = 'https://api-for-missions-and-railways.herokuapp.com/users';
   const url1 = 'https://api-for-missions-and-railways.herokuapp.com/books/';
   const id = '18c73646-be9c-4165-8b29-4608381c1aaf';
-  const [error, setError] = React.useState(null);
+  const error = React.useState(null);
 
   React.useEffect(() => {
     axios
