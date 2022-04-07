@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <>
+    <div>
       <h1>ホーム</h1>
       <div>
         新規登録は<Link to={`/signup/`}>こちら</Link>
@@ -24,7 +24,7 @@ const Home = () => {
       <div>
         レビュー詳細は<Link to={`/detail`}>こちら</Link>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -26,13 +26,9 @@ const NewPage = () => {
   return (
     <div>
       <h1>レビュー投稿ページ</h1>
-      <div>
-        レビュー一覧は<Link to={`/review`}>こちら</Link>
-      </div>
+      レビュー一覧は<Link to={`/review`}>こちら</Link>
       <New />
-      <div>
-        <Link to={`/home`}>ホームに戻る</Link>
-      </div>
+      <Link to={`/home`}>ホームに戻る</Link>
     </div>
   );
 };

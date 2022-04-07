@@ -28,12 +28,8 @@ const ProfilePage = () => {
       <h1>プロフィールページ</h1>
       <GetUserAPI />
       <Profile />
-      <div>
-        レビュー一覧は<Link to={`/review`}>こちら</Link>
-      </div>
-      <div>
-        <Link to={`/home`}>ホームに戻る</Link>
-      </div>
+      レビュー一覧は<Link to={`/review`}>こちら</Link>
+      <Link to={`/home`}>ホームに戻る</Link>
     </div>
   );
 };

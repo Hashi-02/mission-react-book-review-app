@@ -41,7 +41,7 @@ const Login = () => {
   return (
     <>
       {/* APIを叩いた時に上手くいかなかったらそのエラーを表示する↓ */}
-      <div>{error && <p>{error.message}</p>}</div>
+      {error && <p>{error.message}</p>}
       {/* ↓フォーム↓ */}
       <div>
         <form onSubmit={formik.handleSubmit}>

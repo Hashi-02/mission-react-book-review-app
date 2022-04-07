@@ -28,7 +28,7 @@ const GetUserAPI = () => {
   }, [TOKEN, navigate]);
 
   if (TOKEN) {
-    return <h1>username:{name.name}</h1>;
+    return <h1>{name.name}さん、ようこそ</h1>;
   }
   return <Login />;
 };

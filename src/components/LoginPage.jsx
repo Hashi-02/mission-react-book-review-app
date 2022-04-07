@@ -27,13 +27,9 @@ const LoginPage = () => {
   return (
     <>
       <h1>ログインページ</h1>
-      <div>
-        新規登録は<Link to={`/signup/`}>こちら</Link>
-      </div>
+      新規登録は<Link to={`/signup/`}>こちら</Link>
       <Login />
-      <div>
-        <Link to={`/home`}>ホームに戻る</Link>
-      </div>
+      <Link to={`/home`}>ホームに戻る</Link>
     </>
   );
 };
