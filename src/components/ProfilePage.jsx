@@ -29,6 +29,7 @@ const ProfilePage = () => {
       <GetUserAPI />
       <Profile />
       レビュー一覧は<Link to={`/review`}>こちら</Link>
+      <br />
       <Link to={`/home`}>ホームに戻る</Link>
     </div>
   );

@@ -28,6 +28,8 @@ const DetailPage = () => {
       <Link to={`/edit`}>編集する</Link>
       <Detail />
       レビュー一覧は<Link to={`/review`}>こちら</Link>
+      <br />
+      <Link to={`/home`}>ホームに戻る</Link>
     </div>
   );
 };

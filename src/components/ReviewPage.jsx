@@ -27,8 +27,11 @@ const ReviewPage = () => {
     <>
       <GetUserAPI />
       <Logout />
+      <br />
       レビュー投稿は<Link to={`/new`}>こちら</Link>
+      <br />
       プロフィールは<Link to={`/profile`}>こちら</Link>
+      <br />
       <Link to={`/home`}>ホームに戻る</Link>
       <h1>レビュー一覧</h1>
       <Review />
