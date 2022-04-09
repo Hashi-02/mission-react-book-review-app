@@ -21,9 +21,6 @@ const Home = () => {
       <div>
         レビュー投稿は<Link to={`/new`}>こちら</Link>
       </div>
-      <div>
-        レビュー詳細は<Link to={`/detail`}>こちら</Link>
-      </div>
     </div>
   );
 };

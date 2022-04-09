@@ -30,7 +30,7 @@ const Review = () => {
       <div>
         {info.map((d, index) => (
           <div key={index}>
-            <Link to={`/details/${d.id}?id=${d.id}`}>
+            <Link to={`/detail/${d.id}?id=${d.id}`}>
               <p>タイトル「{d.title}」</p>
             </Link>
             <p>レビュー:{d.review}</p>

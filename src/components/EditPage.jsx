@@ -1,16 +1,16 @@
 import { useFormik } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import React from 'react';
 import * as Yup from 'yup';
-
-const Edit = () => {
+import Delete from './DeleteButton';
+const EditPage = () => {
   const navigate = useNavigate();
+  const id = useParams();
   const [name, setUsername] = React.useState();
   const TOKEN = localStorage.getItem('token');
   const url = 'https://api-for-missions-and-railways.herokuapp.com/users';
   const url1 = 'https://api-for-missions-and-railways.herokuapp.com/books/';
-  const id = '18c73646-be9c-4165-8b29-4608381c1aaf';
   const error = React.useState(null);
 
   React.useEffect(() => {
@@ -21,7 +21,7 @@ const Edit = () => {
         },
       })
       .then((res) => {
-        console.log(res.data.name);
+        console.log('aaaaaaaa' + res.data.name);
         // const result = JSON.stringify(res.data.name);
         const result = res.data.name;
         setUsername(result);
@@ -54,18 +54,21 @@ const Edit = () => {
     }),
     onSubmit: (values) => {
       console.log(values, null, 2);
+      console.log(TOKEN);
       var article = JSON.stringify(values, null, 2);
       axios
-        .put(url1 + id, article, {
+        .put(url1 + id.id, article, {
           headers: {
             Authorization: `Bearer ${TOKEN}`,
           },
         })
         .then((res) => {
           console.log(res.data);
+          navigate('/review');
         })
         .catch((res) => {
           console.log(res.data);
+          console(id);
         });
     },
   });
@@ -74,13 +77,7 @@ const Edit = () => {
     <div>
       <h1>編集ページ</h1>
       <h1>username:{name}</h1>
-      <div>
-        ログインは<Link to={`/login/`}>こちら</Link>
-      </div>
       <div>{error && <p>{error.message}</p>}</div>
-      <div>
-        <Link to={`/home`}>ホームに戻る</Link>
-      </div>
 
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="title">title</label>
@@ -137,8 +134,13 @@ const Edit = () => {
 
         <button type="submit">Submit</button>
       </form>
+      <Delete />
+
+      <div>
+        <Link to={`/home`}>ホームに戻る</Link>
+      </div>
     </div>
   );
 };
 
-export default Edit;
+export default EditPage;

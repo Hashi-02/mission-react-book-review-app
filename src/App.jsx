@@ -7,8 +7,7 @@ import ReviewPage from './components/ReviewPage';
 import ProfilePage from './components/ProfilePage';
 import NewPage from './components/NewPage';
 import DetailPage from './components/DetailPage';
-import Edit from './components/Edit';
-import Detail from './components/Detail';
+import EditPage from './components/EditPage';
 
 const App = () => {
   return (
@@ -21,10 +20,8 @@ const App = () => {
         <Route path={`*`} element={<NotFound />} />
         <Route path={`/profile/`} element={<ProfilePage />} />
         <Route path={`/new`} element={<NewPage />} />
-        <Route path={`/detail`} element={<DetailPage />} />
-        <Route path={`/edit`} element={<Edit />} />
-        {/* <Route path={`/detail/:id`} element={<DetailPage />} /> */}
-        <Route path={`/details/:id`} element={<Detail />} />
+        <Route path={`/edit/:id`} element={<EditPage />} />
+        <Route path={`/detail/:id`} element={<DetailPage />} />
       </Routes>
     </BrowserRouter>
   );

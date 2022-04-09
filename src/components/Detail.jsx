@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const Detail = () => {
   const [review, setReview] = React.useState([]);
@@ -37,6 +37,7 @@ const Detail = () => {
         レビュワー:
         {review.reviewer}
       </p>
+      <Link to={`/edit/${review.id}`}>編集する</Link>
     </div>
   );
 };
