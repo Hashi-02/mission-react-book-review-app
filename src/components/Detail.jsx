@@ -1,16 +1,16 @@
 import axios from 'axios';
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 const Detail = () => {
   const [review, setReview] = React.useState([]);
-  const TOKEN =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDk0MzAzOTYsImlhdCI6IjIwMjItMDQtMDdUMTU6MDY6MzYuMDUyMDk3Mzk2WiIsInN1YiI6IjU0NTQ2NTU3MzU0IiwidXNlcl9pZCI6IjdiOTY1NTdkLTQ2MDEtNGVkOS04NzdhLTk2ODY4ZDM1YTA0NCJ9.OBJMx4UAhjb36Losq92yt5KQQqZsi-gNYGGgstCuqY8';
+  const TOKEN = localStorage.getItem('token');
+  const id = useParams();
   const url = 'https://api-for-missions-and-railways.herokuapp.com/books/';
-  const id = 'fb29f8f7-a46f-420b-b677-f7c0b721e79c';
 
   React.useEffect(() => {
     axios
-      .get(url + id, {
+      .get(url + id.id, {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -21,9 +21,10 @@ const Detail = () => {
         setReview(result);
       })
       .catch((res) => {
+        console.log(id);
         console.log(res.data);
       });
-  }, [TOKEN]);
+  }, [TOKEN, id]);
 
   return (
     <div>

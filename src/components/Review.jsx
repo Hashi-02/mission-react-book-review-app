@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Review = () => {
   const [info, setInfo] = React.useState([]);
@@ -21,6 +22,7 @@ const Review = () => {
         console.log(res.data);
       });
   }, [TOKEN]);
+
   // const listInfo = info.map((i) => <div key={i}>{info[i]}</div>);
   // {a:2}
   return (
@@ -28,7 +30,9 @@ const Review = () => {
       <div>
         {info.map((d, index) => (
           <div key={index}>
-            <p>タイトル「{d.title}」</p>
+            <Link to={`/details/${d.id}?id=${d.id}`}>
+              <p>タイトル「{d.title}」</p>
+            </Link>
             <p>レビュー:{d.review}</p>
             <br />
           </div>
