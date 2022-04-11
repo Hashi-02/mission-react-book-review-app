@@ -1,10 +1,11 @@
 /*  Home.js */
 
 import { Link } from 'react-router-dom';
-
+import GetUserAPI from './GetUserAPI';
 const Home = () => {
   return (
     <div>
+      <GetUserAPI />
       <h1>ホーム</h1>
       <div>
         新規登録は<Link to={`/signup/`}>こちら</Link>

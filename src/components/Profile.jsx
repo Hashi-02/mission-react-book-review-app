@@ -4,7 +4,7 @@ import React from 'react';
 import * as Yup from 'yup';
 
 const Profile = () => {
-  const [name, setUsername] = React.useState();
+  const [name, setUsername] = React.useState('');
   const TOKEN = localStorage.getItem('token');
   const url = 'https://api-for-missions-and-railways.herokuapp.com/users';
   const [error, setError] = React.useState(null);
@@ -17,7 +17,6 @@ const Profile = () => {
         },
       })
       .then((res) => {
-        console.log(res.data.name);
         const result = res.data.name;
         setUsername(result);
       })
@@ -27,6 +26,7 @@ const Profile = () => {
   }, [TOKEN]);
 
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
       // ここの代入方法がわからない
       name: name,
@@ -35,7 +35,8 @@ const Profile = () => {
       name: Yup.string().max(40).required('Required'),
     }),
     onSubmit: (values) => {
-      var names = JSON.stringify(values.name, null, 2);
+      console.log('aaa' + values.name);
+      var names = values.name;
       var article = { name: names };
       axios
         .put(url, article, {
@@ -44,7 +45,9 @@ const Profile = () => {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          console.log('res');
+          const result = res.data.name;
+          setUsername(result);
         })
         .catch((error) => {
           setError(error);

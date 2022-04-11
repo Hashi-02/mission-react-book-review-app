@@ -37,7 +37,7 @@ const Detail = () => {
         レビュワー:
         {review.reviewer}
       </p>
-      <Link to={`/edit/${review.id}`}>編集する</Link>
+      {review.isMine && <Link to={`/edit/${review.id}`}>編集する</Link>}
     </div>
   );
 };

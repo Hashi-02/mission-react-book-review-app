@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import React from 'react';
-import Login from './Login';
+// import Login from './Login';
 
 const GetUserAPI = () => {
   const navigate = useNavigate();
-  const [name, setUsername] = React.useState([]);
+  const [names, setUsername] = React.useState('');
   const TOKEN = localStorage.getItem('token');
   const url = 'https://api-for-missions-and-railways.herokuapp.com/users';
 
@@ -18,7 +18,7 @@ const GetUserAPI = () => {
       })
       .then((res) => {
         console.log(res.data);
-        const result = res.data;
+        const result = res.data.name;
         setUsername(result);
       })
       .catch((res) => {
@@ -27,9 +27,9 @@ const GetUserAPI = () => {
   }, [TOKEN, navigate]);
 
   if (TOKEN) {
-    return <h1>{name.name}さん、ようこそ</h1>;
+    return <h1>{names}さん、ようこそ</h1>;
   }
-  return <Login />;
+  return <h1>Guestさん、ようこそ</h1>;
 };
 
 export default GetUserAPI;

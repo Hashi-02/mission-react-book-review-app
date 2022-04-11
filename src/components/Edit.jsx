@@ -4,19 +4,45 @@ import axios from 'axios';
 import React from 'react';
 import * as Yup from 'yup';
 const Edit = () => {
+  const [title, setTitle] = React.useState();
+  const [url, setUrl] = React.useState();
+  const [detail, setDetail] = React.useState();
+  const [review, setReview] = React.useState();
+
   const navigate = useNavigate();
   const id = useParams();
   const TOKEN = localStorage.getItem('token');
-  const url = 'https://api-for-missions-and-railways.herokuapp.com/books/';
+  const API = 'https://api-for-missions-and-railways.herokuapp.com/books/';
   const [error, setError] = React.useState(null);
+
+  React.useEffect(() => {
+    axios
+      .get(API + id.id, {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data.title);
+        setTitle(res.data.title);
+        setUrl(res.data.url);
+        setDetail(res.data.detail);
+        setReview(res.data.review);
+      })
+      .catch((res) => {
+        console.log(id);
+        console.log(res.data);
+      });
+  }, [TOKEN, id]);
 
   const formik = useFormik(
     {
+      enableReinitialize: true,
       initialValues: {
-        title: '',
-        url: '',
-        detail: '',
-        review: '',
+        title: title,
+        url: url,
+        detail: detail,
+        review: review,
       },
       validationSchema: Yup.object({
         title: Yup.string()
@@ -42,6 +68,10 @@ const Edit = () => {
             },
           })
           .then((res) => {
+            setTitle(res.data.title);
+            setUrl(res.data.url);
+            setDetail(res.data.detail);
+            setReview(res.data.review);
             console.log(res.data);
             navigate('/review');
           })
