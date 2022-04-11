@@ -23,8 +23,6 @@ const Review = () => {
       });
   }, [TOKEN]);
 
-  // const listInfo = info.map((i) => <div key={i}>{info[i]}</div>);
-  // {a:2}
   return (
     <>
       <div>

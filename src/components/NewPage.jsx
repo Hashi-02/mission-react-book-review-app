@@ -6,12 +6,11 @@ import New from './New';
 const NewPage = () => {
   const navigate = useNavigate();
   const TOKEN = localStorage.getItem('token');
-  const url1 =
+  const LoginAuth =
     'https://api-for-missions-and-railways.herokuapp.com/books?offset=10';
-
   React.useEffect(() => {
     axios
-      .get(url1, {
+      .get(LoginAuth, {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },

@@ -7,11 +7,11 @@ import Profile from './Profile';
 const ProfilePage = () => {
   const navigate = useNavigate();
   const TOKEN = localStorage.getItem('token');
-  const url = 'https://api-for-missions-and-railways.herokuapp.com/users';
-
+  const LoginAuth =
+    'https://api-for-missions-and-railways.herokuapp.com/books?offset=10';
   React.useEffect(() => {
     axios
-      .get(url, {
+      .get(LoginAuth, {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },

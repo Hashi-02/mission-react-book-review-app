@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import React from 'react';
 import GetUserAPI from './GetUserAPI';
@@ -7,6 +7,7 @@ import Review from './Review';
 
 const ReviewPage = () => {
   const TOKEN = localStorage.getItem('token');
+  const navigate = useNavigate();
   //認証APIを使ってログインorNOT判別
   const LoginAuth =
     'https://api-for-missions-and-railways.herokuapp.com/books?offset=10';
@@ -21,8 +22,9 @@ const ReviewPage = () => {
       .then(() => {})
       .catch((res) => {
         console.log(res.data);
+        navigate('/login');
       });
-  }, [TOKEN]);
+  }, [TOKEN, navigate]);
   return (
     <>
       <GetUserAPI />

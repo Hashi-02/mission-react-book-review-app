@@ -9,7 +9,6 @@ const SignupPage = () => {
   //認証APIを使ってログインorNOT判別
   const LoginAuth =
     'https://api-for-missions-and-railways.herokuapp.com/books?offset=10';
-
   React.useEffect(() => {
     axios
       .get(LoginAuth, {

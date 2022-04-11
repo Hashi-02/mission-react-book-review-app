@@ -7,7 +7,7 @@ const Profile = () => {
   const [name, setUsername] = React.useState();
   const TOKEN = localStorage.getItem('token');
   const url = 'https://api-for-missions-and-railways.herokuapp.com/users';
-  const error = React.useState(null);
+  const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
     axios
@@ -46,8 +46,8 @@ const Profile = () => {
         .then((res) => {
           console.log(res.data);
         })
-        .catch((res) => {
-          console.log(res.data);
+        .catch((error) => {
+          setError(error);
         });
     },
   });

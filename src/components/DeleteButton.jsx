@@ -5,10 +5,10 @@ const Delete = () => {
   const navigate = useNavigate();
   const id = useParams();
   const TOKEN = localStorage.getItem('token');
-  const url1 = 'https://api-for-missions-and-railways.herokuapp.com/books/';
+  const url = 'https://api-for-missions-and-railways.herokuapp.com/books/';
   const buttonDelete = () => {
     axios
-      .delete(url1 + id.id, {
+      .delete(url + id.id, {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
@@ -19,7 +19,6 @@ const Delete = () => {
       })
       .catch((res) => {
         console.log(res.data);
-        console(id);
       });
   };
 

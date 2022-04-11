@@ -23,7 +23,6 @@ const GetUserAPI = () => {
       })
       .catch((res) => {
         console.log(res.data);
-        navigate('/login');
       });
   }, [TOKEN, navigate]);
 
