@@ -27,7 +27,9 @@ const ReviewPage = () => {
   }, [TOKEN, navigate]);
   return (
     <>
-      <GetUserAPI />
+      <div className="text-right">
+        <GetUserAPI />
+      </div>
       <Logout />
       <br />
       レビュー投稿は<Link to={`/new`}>こちら</Link>
@@ -35,7 +37,9 @@ const ReviewPage = () => {
       プロフィールは<Link to={`/profile`}>こちら</Link>
       <br />
       <Link to={`/home`}>ホームに戻る</Link>
-      <h1>レビュー一覧</h1>
+      <div className="flex flex-col text-center  items-center">
+        <h1>レビュー一覧</h1>
+      </div>
       <Review />
     </>
   );

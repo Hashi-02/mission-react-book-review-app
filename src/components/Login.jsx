@@ -42,37 +42,74 @@ const Login = () => {
     <>
       {/* APIを叩いた時に上手くいかなかったらそのエラーを表示する↓ */}
       {error && <p>{error.message}</p>}
-      {/* ↓フォーム↓ */}
-      <div>
-        <form onSubmit={formik.handleSubmit}>
-          <label htmlFor="email">Email Address</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <div>{formik.errors.email}</div>
-          ) : null}
-          <label htmlFor="password">password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
-          />
-          {formik.touched.password && formik.errors.password ? (
-            <div>{formik.errors.password}</div>
-          ) : null}
-          <button type="submit">Submit</button>
-        </form>
-        {/* ↑フォーム↑ */}
-      </div>
+      <form class="w-full max-w-sm" onSubmit={formik.handleSubmit}>
+        <div class="md:flex md:items-center mb-6">
+          <div class="md:w-1/3">
+            <label
+              htmlFor="email"
+              class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+              for="inline-full-name"
+            >
+              Email
+            </label>
+          </div>
+          <div class="md:w-2/3">
+            <input
+              class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              id="email"
+              name="email"
+              type="email"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+            />
+            {formik.touched.email && formik.errors.email ? (
+              <div>{formik.errors.email}</div>
+            ) : null}
+          </div>
+        </div>
+
+        <div class="md:flex md:items-center mb-6">
+          <div class="md:w-1/3">
+            <label
+              htmlFor="password"
+              class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+              for="inline-password"
+            >
+              Password
+            </label>
+          </div>
+          <div class="md:w-2/3">
+            <input
+              class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              id="password"
+              name="password"
+              type="password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.password}
+            />
+            {formik.touched.password && formik.errors.password ? (
+              <div>{formik.errors.password}</div>
+            ) : null}
+          </div>
+        </div>
+        <div class="md:flex md:items-center mb-6">
+          <div class="md:w-1/3"></div>
+          <label class="md:w-2/3 block text-gray-500 font-bold"></label>
+        </div>
+        <div class="md:flex md:items-center">
+          <div class="md:w-1/3"></div>
+          <div class="md:w-2/3">
+            <button
+              class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+              type="submit"
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </form>
     </>
   );
 };

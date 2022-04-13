@@ -25,11 +25,15 @@ const SignupPage = () => {
   }, [TOKEN, navigate]);
 
   return (
-    <div>
+    <div className="flex flex-col text-center  items-center">
       <h1>新規登録ページ</h1>
-      ログインは<Link to={`/login/`}>こちら</Link>
+      <button>
+        <Link to={`/login/`}>ログインはこちら</Link>
+      </button>
       <Signup />
-      <Link to={`/home`}>ホームに戻る</Link>
+      <button>
+        <Link to={`/home`}>ホームに戻る</Link>
+      </button>
     </div>
   );
 };
