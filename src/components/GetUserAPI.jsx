@@ -17,12 +17,12 @@ const GetUserAPI = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         const result = res.data.name;
         setUsername(result);
       })
-      .catch((res) => {
-        console.log(res.data);
+      .catch(() => {
+        console.log('ユーザー情報が認識されませんでした');
       });
   }, [TOKEN, navigate]);
 

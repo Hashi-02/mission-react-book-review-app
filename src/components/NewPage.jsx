@@ -23,11 +23,18 @@ const NewPage = () => {
   }, [TOKEN, navigate]);
 
   return (
-    <div>
-      <h1>レビュー投稿ページ</h1>
-      レビュー一覧は<Link to={`/review`}>こちら</Link>
+    <div className="h-screen bg-gray-800 flex flex-col items-center justify-center">
+      <h1 className="text-6xl text-gray-50 mb-6 text-center">
+        レビュー投稿ページ
+      </h1>
+      <button className="text-gray-50">
+        レビュー一覧は<Link to={`/review`}>こちら</Link>
+      </button>
+
       <New />
-      <Link to={`/home`}>ホームに戻る</Link>
+      <button className="text-gray-50">
+        <Link to={`/home`}>ホームに戻る</Link>
+      </button>
     </div>
   );
 };

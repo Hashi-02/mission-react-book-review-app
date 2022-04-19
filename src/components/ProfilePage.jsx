@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import React from 'react';
-import GetUserAPI from './GetUserAPI';
 import Profile from './Profile';
 
 const ProfilePage = () => {
@@ -24,13 +23,18 @@ const ProfilePage = () => {
   }, [TOKEN, navigate]);
 
   return (
-    <div>
-      <h1>プロフィールページ</h1>
-      <GetUserAPI />
+    <div className="h-screen bg-gray-800 flex flex-col items-center justify-center">
+      <h1 className="text-6xl text-gray-50 mb-6 text-center">
+        プロフィールページ
+      </h1>
       <Profile />
-      レビュー一覧は<Link to={`/review`}>こちら</Link>
-      <br />
-      <Link to={`/home`}>ホームに戻る</Link>
+      <button className="text-gray-50">
+        レビュー一覧は<Link to={`/review`}>こちら</Link>
+      </button>
+
+      <button className="text-gray-50">
+        <Link to={`/home`}>ホームに戻る</Link>
+      </button>
     </div>
   );
 };

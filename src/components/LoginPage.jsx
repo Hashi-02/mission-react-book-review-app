@@ -25,13 +25,13 @@ const LoginPage = () => {
       });
   }, [TOKEN, navigate]);
   return (
-    <div className="flex flex-col text-center  items-center">
-      <h1>ログインページ</h1>
-      <button>
+    <div className="h-screen bg-gray-800 flex flex-col items-center justify-center">
+      <p className="text-6xl text-gray-50 mb-6 text-center">ログインページ</p>
+      <button className="text-gray-50">
         <Link to={`/signup/`}>新規登録はこちら</Link>
       </button>
       <Login />
-      <button>
+      <button className="text-gray-50">
         <Link to={`/home`}>ホームに戻る</Link>
       </button>
     </div>

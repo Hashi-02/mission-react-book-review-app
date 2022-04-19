@@ -26,22 +26,26 @@ const ReviewPage = () => {
       });
   }, [TOKEN, navigate]);
   return (
-    <>
+    <div className="h-screen container-none bg-gray-900 ">
       <div className="text-right">
         <GetUserAPI />
       </div>
-      <Logout />
-      <br />
-      レビュー投稿は<Link to={`/new`}>こちら</Link>
-      <br />
-      プロフィールは<Link to={`/profile`}>こちら</Link>
-      <br />
-      <Link to={`/home`}>ホームに戻る</Link>
+      <div className="text-gray-50">
+        <Logout />
+        <br />
+        レビュー投稿は<Link to={`/new`}>こちら</Link>
+        <br />
+        プロフィールは<Link to={`/profile`}>こちら</Link>
+        <br />
+        <Link to={`/home`}>ホームに戻る</Link>
+      </div>
       <div className="flex flex-col text-center  items-center">
         <h1>レビュー一覧</h1>
       </div>
-      <Review />
-    </>
+      <div>
+        <Review />
+      </div>
+    </div>
   );
 };
 
